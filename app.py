@@ -13,11 +13,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = "alish"
 api = Api(app)
 
-# create db at first request when app runs
-@app.before_first_request
-def create_tables():
-    db.create_all()
-
 jwt = JWT(app, authenticate, identity)
 
 api.add_resource(Item, "/item/<string:name>")
